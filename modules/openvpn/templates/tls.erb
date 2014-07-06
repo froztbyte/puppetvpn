@@ -1,0 +1,20 @@
+cd /etc/openvpn
+<% if local_host != '' %>local <%= local_host %><% end %>
+<% if remote_host != '' %>remote <%= remote_host %><% end %>
+proto udp
+<% if local_port != '' %>lport <%= local_port %><% end %>
+<% if remote_port != '' %>rport <%= remote_port %><% end %>
+<% if role == 'server' %>tls-server<% end %>
+<% if role == 'client' %>tls-client<% end %>
+tls-remote <%= tls_remote %>
+ca <%= ca %>
+cert <%= cert %>
+key <%= key %>
+dh <%= dh %>
+verb 3
+daemon
+dev tun
+ifconfig <%= local_addr %> <%= remote_addr %>
+comp-lzo <%= comp_lzo %>
+ping <%= ping %>
+ping-restart <%= ping_restart %>

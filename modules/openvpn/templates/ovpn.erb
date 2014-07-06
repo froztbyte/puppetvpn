@@ -1,0 +1,32 @@
+cd /etc/openvpn
+ca <%= ca %>
+cert <%= cert %>
+key <%= key %>
+dh <%= dh %>
+
+proto udp
+verb 3
+dev <%= device %>
+
+<% if role == 'server' %>
+server <%= server_ip %>
+tls-server
+daemon
+push "explicit-exit-notify 3"
+<% if duplicate_cn %>duplicate-cn<% end %>
+<% if c2c %>client-to-client<% end %>
+<% if ccd != '' %>client-config-dir <%= ccd %><% end %>
+<% end -%>
+<% if role == 'client' -%>
+client
+nobind
+remote <%= remote_host %> <%= remote_port %>
+<% end -%>
+
+<% if keepalive != '' %>
+keepalive <%= keepalive %>
+persist-key
+persist-tun
+<% if resolvretry != ''%>resolv-retry <%= resolvretry %><% end %>
+<% end -%>
+comp-lzo <%= comp_lzo %>
