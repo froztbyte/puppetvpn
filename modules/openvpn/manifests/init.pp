@@ -1,10 +1,10 @@
-class openvpn::install {
+class puppetvpn::install {
     package { openvpn: ensure => installed }
 }
 
-class openvpn::config {
+class puppetvpn::config {
     File {
-        require => Class["openvpn::install"],
+        require => Class["puppetvpn::install"],
         owner   => "root",
         group   => "root",
         mode    => 644
@@ -19,5 +19,5 @@ class openvpn::config {
 }
 
 class openvpn {
-    include openvpn::config, openvpn::install
+    include puppetvpn::config, puppetvpn::install
 }

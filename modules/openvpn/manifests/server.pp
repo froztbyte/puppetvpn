@@ -1,4 +1,4 @@
-define openvpn::server(
+define puppetvpn::server(
     $server_ip='',
     $port='',
     $role='server',
@@ -18,7 +18,7 @@ define openvpn::server(
         owner   => root,
         group   => root,
         mode    => 644,
-        require => Class["openvpn::config"]
+        require => Class["puppetvpn::config"]
     }
 
     file {

@@ -1,4 +1,4 @@
-define openvpn::tls(
+define puppetvpn::tls(
     $local_host='', $local_port='',
     $remote_host='', $remote_port='',
     $role,
@@ -17,7 +17,7 @@ define openvpn::tls(
         owner   => root,
         group   => root,
         mode    => 644,
-        require => Class["openvpn::config"]
+        require => Class["puppetvpn::config"]
     }
 
     file {
