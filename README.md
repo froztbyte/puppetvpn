@@ -8,10 +8,12 @@ It's based on original work by @mithrandi, so a fair hattip there as should be n
 Howto
 -----
 
-Point to point VPNs can be defined as below. This will set up a p2p link between `brown` and `yellow`.
+Install the module as usual. Create a `dh1024` (see `puppetvpn/files/dh1024.pem` if you don't know how).
+
+Point to point VPNs can be defined as below. This will set up a p2p link between `brown` and `yellow` (examples presume `include puppetvpn` is in your default node)
 
 ```
-node 'yellow.example' {
+node 'yellow.example' inherits default {
     puppetvpn::tls {
         'brown.example':
             local_port  => '4434',
@@ -29,7 +31,7 @@ node 'yellow.example' {
 And a more hub-and-spoke setup can be done too. This will make `red` the hub, with `blue` and `green` being clients.
 
 ```
-node 'red' {
+node 'red' inherits default {
     puppetvpn::server {
         'red.example':
             port      => '1194',
@@ -47,7 +49,7 @@ node 'red' {
 ```
 
 ```
-node 'green.example' {
+node 'green.example' inherits default {
     puppetvpn::client {
         'green.example':
             remote_host => 'red.example'
@@ -63,7 +65,7 @@ node 'green.example' {
 ```
 
 ```
-node 'blue.example' {
+node 'blue.example' inherits default {
     puppetvpn::client {
         'blue.example':
             remote_host => 'red.example',
