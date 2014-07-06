@@ -12,7 +12,7 @@ Point to point VPNs can be defined as below. This will set up a p2p link between
 
 ```
 node 'yellow.example' {
-    openvpn::tls {
+    puppetvpn::tls {
         'brown.example':
             local_port  => '4434',
             remote_host => 'brown.example',
@@ -30,13 +30,13 @@ And a more hub-and-spoke setup can be done too. This will make `red` the hub, wi
 
 ```
 node 'red' {
-    openvpn::server {
+    puppetvpn::server {
         'red.example':
             port      => '1194',
             server_ip => '192.0.2.1 255.255.255.0'
     }
 
-    openvpn::server {
+    puppetvpn::server {
         'red5.example':
             port      => '1195',
             server_ip => '192.5.2.1 255.255.255.0',
@@ -48,12 +48,12 @@ node 'red' {
 
 ```
 node 'green.example' {
-    openvpn::client {
+    puppetvpn::client {
         'green.example':
             remote_host => 'red.example'
     }
 
-    openvpn::client {
+    puppetvpn::client {
         'green5.example':
             remote_host => 'red.example',
             remote_port => '1195',
@@ -64,7 +64,7 @@ node 'green.example' {
 
 ```
 node 'blue.example' {
-    openvpn::client {
+    puppetvpn::client {
         'blue.example':
             remote_host => 'red.example',
             remote_port => '1195'
