@@ -22,6 +22,6 @@ define puppetvpn::tls(
 
     file {
         "/etc/openvpn/$name.conf":
-            content => template("openvpn/tls.erb");
+            content => template("puppetvpn/tls.erb");
     }
 }

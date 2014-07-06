@@ -20,6 +20,6 @@ define puppetvpn::client(
 
     file {
         "/etc/openvpn/$name.conf":
-            content => template("openvpn/ovpn.erb");
+            content => template("puppetvpn/ovpn.erb");
     }
 }

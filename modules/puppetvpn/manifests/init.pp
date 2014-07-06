@@ -14,10 +14,10 @@ class puppetvpn::config {
         "/etc/openvpn/keys":
             ensure  => directory;
         "/etc/openvpn/dh1024.pem":
-            source => "puppet:///modules/openvpn/dh1024.pem";
+            source => "puppet:///modules/puppetvpn/dh1024.pem";
     }
 }
 
-class openvpn {
+class puppetvpn {
     include puppetvpn::config, puppetvpn::install
 }
