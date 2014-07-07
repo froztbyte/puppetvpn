@@ -12,7 +12,8 @@ define puppetvpn::server(
     $ca='/var/lib/puppet/ssl/certs/ca.pem',
     $cert="/var/lib/puppet/ssl/certs/${fqdn}.pem",
     $key="/var/lib/puppet/ssl/private_keys/${fqdn}.pem",
-    $dh='dh1024.pem') {
+    $dh='dh1024.pem',
+    $routes) {
 
     File {
         owner   => root,

@@ -13,6 +13,7 @@ server <%= server_ip %>
 tls-server
 daemon
 push "explicit-exit-notify 3"
+status status/<%= title %>.log
 <% if duplicate_cn %>duplicate-cn<% end %>
 <% if c2c %>client-to-client<% end %>
 <% if ccd != '' %>client-config-dir <%= ccd %><% end %>
@@ -30,3 +31,9 @@ persist-tun
 <% if resolvretry != ''%>resolv-retry <%= resolvretry %><% end %>
 <% end -%>
 comp-lzo <%= comp_lzo %>
+
+<% if has_variable?("routes") -%>
+<% routes.sort.each do |route| -%>
+route <%= route %>
+<% end -%>
+<% end -%>
